@@ -10,10 +10,10 @@ struct WindowProperties
     unsigned long borderColor, backgroundColor;
 
     WindowProperties(
-        int x = 0,
-        int y = 0,
         unsigned int width = 200,
         unsigned int height = 150,
+        int x = 0,
+        int y = 0,
         unsigned int borderWidth = 15,
         unsigned long borderColor = 0x000000,
         unsigned long backgroundColor = 0xffffff
