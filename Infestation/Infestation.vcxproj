@@ -60,10 +60,48 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Window\XWindow.cpp">
+      <ClangMode>true</ClangMode>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+      <CAdditionalWarning>switch;no-deprecated-declarations;empty-body;conversion;return-type;parentheses;no-pointer-sign;no-format;uninitialized;unreachable-code;unused-function;unused-value;unused-variable;</CAdditionalWarning>
+      <CppAdditionalWarning>switch;no-deprecated-declarations;empty-body;conversion;return-type;parentheses;no-format;uninitialized;unreachable-code;unused-function;unused-value;unused-variable;</CppAdditionalWarning>
+      <Optimization>Disabled</Optimization>
+      <StrictAliasing>false</StrictAliasing>
+      <ProgramDatabaseFileName>G:\Perforce\Year1\BlockB\Infestation\Infestation\obj\ARM\Debug\</ProgramDatabaseFileName>
+      <UnrollLoops>false</UnrollLoops>
+      <LinkTimeOptimization>false</LinkTimeOptimization>
+      <NoCommonBlocks>false</NoCommonBlocks>
+      <OmitFramePointers>false</OmitFramePointers>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <ObjCExceptionHandling>Disabled</ObjCExceptionHandling>
+      <MakeStringsReadOnly>true</MakeStringsReadOnly>
+      <ThreadSafeStatics>Yes</ThreadSafeStatics>
+      <RelaxIEEE>false</RelaxIEEE>
+      <HideInlineMethods>false</HideInlineMethods>
+      <PositionIndependentCode>false</PositionIndependentCode>
+      <SymbolsHiddenByDefault>false</SymbolsHiddenByDefault>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ObjectFileName>G:\Perforce\Year1\BlockB\Infestation\Infestation\obj\ARM\Debug\%(filename).o</ObjectFileName>
+      <CompileAs>Default</CompileAs>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <Verbose>false</Verbose>
+      <EnablePREfast>false</EnablePREfast>
+      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
+      <PrecompiledHeaderOutputFileDirectory>G:\Perforce\Year1\BlockB\Infestation\Infestation\obj\ARM\Debug\</PrecompiledHeaderOutputFileDirectory>
+      <PrecompiledHeaderCompileAs>CompileAsCpp</PrecompiledHeaderCompileAs>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <ObjCAutomaticRefCounting>true</ObjCAutomaticRefCounting>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ThumbMode>Thumb</ThumbMode>
+      <EnableNeonCodegen>false</EnableNeonCodegen>
+      <LinkCompiled>true</LinkCompiled>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="Window\Window.h" />
+    <ClInclude Include="Window\XWindow.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

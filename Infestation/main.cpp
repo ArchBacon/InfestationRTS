@@ -1,11 +1,11 @@
 #include <X11/Xlib.h>
-#include "Window.h"
+#include "XWindow.h"
 
 int main(void)
 {
     XEvent event;
 
-    const auto window = new XWindow();
+    const XWindow* window = new XWindow();
 
     while (true)
     {

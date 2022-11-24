@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <X11/Xlib.h>
+#include "Window.h"
 
 struct WindowProperties
 {
@@ -26,7 +27,7 @@ struct WindowProperties
     }
 };
 
-class XWindow
+class XWindow : public IWindow
 {
     Window window;
     Display* display;

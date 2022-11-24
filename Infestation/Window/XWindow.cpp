@@ -1,4 +1,4 @@
-﻿#include "Window.h"
+﻿#include "XWindow.h"
 
 #include <stdio.h>
 #include <stdlib.h>
