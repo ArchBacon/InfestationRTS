@@ -1,5 +1,5 @@
 #include <X11/Xlib.h>
-#include "XWindow.h"
+#include "Window/XWindow.h"
 
 int main(void)
 {
