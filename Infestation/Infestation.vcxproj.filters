@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="XWindow.cpp">
+    <ClCompile Include="Window\XWindow.cpp">
       <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
@@ -12,10 +12,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="XWindow.h">
+    <ClInclude Include="Window\XWindow.h">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
+    <ClInclude Include="Window\Window.h">
       <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
