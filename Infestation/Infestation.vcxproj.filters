@@ -15,8 +15,5 @@
     <ClInclude Include="Window\XWindow.h">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="Window\Window.h">
-      <Filter>Window</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

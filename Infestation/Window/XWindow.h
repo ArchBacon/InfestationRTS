@@ -1,7 +1,7 @@
 ﻿#pragma once
 
+#include <EGL/egl.h>
 #include <X11/Xlib.h>
-#include "Window.h"
 
 struct WindowProperties
 {
@@ -27,9 +27,9 @@ struct WindowProperties
     }
 };
 
-class XWindow : public IWindow
+class XWindow
 {
-    Window window;
+    Window nativeWindow;
     Display* display;
     int screen;
     WindowProperties properties;
@@ -38,8 +38,12 @@ public:
     XWindow(WindowProperties properties = WindowProperties());
     ~XWindow();
 
+    EGLBoolean InitializeEGL();
+
     // development only
     Display* GetDisplay() const { return display; };
-    Window& GetWindow() { return window; };
-    int& GetScreen() { return screen; };
+
+    Window GetNativeWindow() const { return nativeWindow; };
+
+    int GetScreen() const { return screen; };
 };

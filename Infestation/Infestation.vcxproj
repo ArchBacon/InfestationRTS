@@ -48,13 +48,16 @@
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Link>
-      <LibraryDependencies>X11;</LibraryDependencies>
+      <LibraryDependencies>X11;EGL;</LibraryDependencies>
     </Link>
     <RemotePostBuildEvent />
+    <ClCompile>
+      <PreprocessorDefinitions>PLATFORM_RASPBERRY;_DEBUG;</PreprocessorDefinitions>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <Link>
-      <LibraryDependencies>X11;</LibraryDependencies>
+      <LibraryDependencies>X11;EGL;</LibraryDependencies>
     </Link>
     <RemotePostBuildEvent />
   </ItemDefinitionGroup>
@@ -100,10 +103,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window\Window.h" />
     <ClInclude Include="Window\XWindow.h" />
   </ItemGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PreprocessorDefinitions>PLATFORM_RASPBERRY;_NDEBUG;</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <ClCompile>
+      <PreprocessorDefinitions>PLATFORM_RASPBERRY;_NDEBUG;</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <PreprocessorDefinitions>PLATFORM_RASPBERRY;_DEBUG;</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
