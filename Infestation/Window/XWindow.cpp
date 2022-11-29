@@ -6,7 +6,6 @@
 XWindow::XWindow(WindowProperties properties)
     : properties(properties)
 {
-
     XSetWindowAttributes swa;
     XSetWindowAttributes xattr;
     Atom wm_state;
@@ -22,17 +21,17 @@ XWindow::XWindow(WindowProperties properties)
     {
         //return EGL_FALSE;
     }
-    //glXCreateContext();
 
-    nativeWindow = DefaultRootWindow(display);
-
-    swa.event_mask = ExposureMask | PointerMotionMask | KeyPressMask;
+    swa.event_mask = ExposureMask | PointerMotionMask | KeyPressMask | StructureNotifyMask;
     nativeWindow = XCreateWindow(
-        display, nativeWindow,
-        0, 0, 800, 600, 0,
+        display,
+        DefaultRootWindow(display),
+        0, 0,
+        800, 600, 0,
         CopyFromParent, InputOutput,
         CopyFromParent, CWEventMask,
-        &swa);
+        &swa
+        );
 
     xattr.override_redirect = 0;
     XChangeWindowAttributes(display, nativeWindow, CWOverrideRedirect, &xattr);
@@ -140,7 +139,6 @@ EGLBoolean XWindow::InitializeEGL()
     }
     if (surface == EGL_NO_SURFACE)
     {
-        
     }
     else
         printf("we got a Surface\n");

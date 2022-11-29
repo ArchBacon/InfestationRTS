@@ -44,6 +44,8 @@ public:
 
     // development only
 #ifdef _DEBUG
+    Display* GetNativeDisplay() const { return display; }
+
     EGLDisplay GetDisplay() const { return eglDisplay; }
 
     Window GetNativeWindow() const { return nativeWindow; }
