@@ -11,13 +11,13 @@ struct WindowProperties
     unsigned long borderColor, backgroundColor;
 
     WindowProperties(
-        unsigned int width = 200,
-        unsigned int height = 150,
+        unsigned int width = 800,
+        unsigned int height = 600,
         int x = 0,
         int y = 0,
-        unsigned int borderWidth = 15,
+        unsigned int borderWidth = 1,
         unsigned long borderColor = 0x000000,
-        unsigned long backgroundColor = 0xffffff
+        unsigned long backgroundColor = 0x00ff00
         ) : x(x), y(y)
           , width(width), height(height)
           , borderWidth(borderWidth)
@@ -29,8 +29,10 @@ struct WindowProperties
 
 class XWindow
 {
+    EGLSurface surface;
     Window nativeWindow;
     Display* display;
+    EGLDisplay eglDisplay;
     int screen;
     WindowProperties properties;
 
@@ -41,9 +43,13 @@ public:
     EGLBoolean InitializeEGL();
 
     // development only
-    Display* GetDisplay() const { return display; };
+#ifdef _DEBUG
+    EGLDisplay GetDisplay() const { return eglDisplay; }
 
-    Window GetNativeWindow() const { return nativeWindow; };
+    Window GetNativeWindow() const { return nativeWindow; }
 
-    int GetScreen() const { return screen; };
+    int GetScreen() const { return screen; }
+
+    EGLSurface GetSurface() const { return surface; }
+#endif // _DEBUG
 };
