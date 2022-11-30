@@ -23,6 +23,9 @@
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Dependencies\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="Window\Context.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -62,6 +65,9 @@
     </ClInclude>
     <ClInclude Include="imgui\imstb_textedit.h">
       <Filter>Dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Context.h">
+      <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
