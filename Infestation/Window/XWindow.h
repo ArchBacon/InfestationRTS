@@ -41,4 +41,5 @@ public:
 
 private:
     bool CreateWindow(int width, int height, const char* title);
+    void InitializeImGui();
 };

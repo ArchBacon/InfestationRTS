@@ -60,7 +60,7 @@
     <RemotePostBuildEvent />
     <ClCompile>
       <PreprocessorDefinitions>PLATFORM_RASPBERRY;_DEBUG;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(solutionDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectDir)imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <PreBuildEvent>
       <Command>
@@ -86,6 +86,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Window\Context.cpp" />
+    <ClCompile Include="Window\Input.cpp" />
     <ClCompile Include="Window\XWindow.cpp">
       <ClangMode>true</ClangMode>
       <WarningLevel>EnableAllWarnings</WarningLevel>
@@ -135,6 +136,7 @@
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="Window\Context.h" />
+    <ClInclude Include="Window\Input.h" />
     <ClInclude Include="Window\XWindow.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">

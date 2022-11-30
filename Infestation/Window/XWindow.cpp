@@ -1,19 +1,21 @@
 ﻿#include "XWindow.h"
-
 #include <cstdio>
-
 #include "Context.h"
+#include "imgui.h"
+#include "imgui_impl_opengl3.h"
 
 XWindow::XWindow(const int width, const int height, const char* title)
     : props({width, height, title})
 {
     windowCreated = CreateWindow(width, height, title);
     eglContext = new Context(GetNativeWindow());
+    InitializeImGui();
 }
 
 void XWindow::Destroy()
 {
     destroyed = true;
+    ImGui::DestroyContext();
     XCloseDisplay(display);
 }
 
@@ -66,4 +68,24 @@ bool XWindow::CreateWindow(int width, int height, const char* title)
     XSendEvent(display, DefaultRootWindow(display), 0, SubstructureNotifyMask, &xev);
 
     return true;
+}
+
+void XWindow::InitializeImGui()
+{
+    // Init ImGui
+    const char* glsl_version = "#version 100";
+
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.DisplaySize = ImVec2(GetWidth(), GetHeight());
+    // io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+    // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+    // Setup Dear ImGui style
+    ImGui::StyleColorsDark();
+
+    // Setup Platform/Renderer backends
+    ImGui_ImplOpenGL3_Init(glsl_version);
 }

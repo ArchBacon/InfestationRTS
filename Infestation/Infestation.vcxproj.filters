@@ -26,6 +26,9 @@
     <ClCompile Include="Window\Context.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include="Window\Input.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -67,6 +70,9 @@
       <Filter>Dependencies\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="Window\Context.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Input.h">
       <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
