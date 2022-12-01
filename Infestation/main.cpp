@@ -26,13 +26,6 @@ int main(int argc, char* argv[])
     const auto window = new XWindow(640, 480, "Hello Window!");
     const auto input = new Input();
 
-    GLfloat vertices[] =
-    {
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f,
-    };
-
     // Specify the viewport of OpenGL in the window
     glViewport(window->GetPositionX(), window->GetPositionY(), window->GetWidth(), window->GetHeight());
 
@@ -62,12 +55,25 @@ int main(int argc, char* argv[])
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
+    GLfloat vertices[] =
+    {
+        -0.5f, -0.5f, 0.0f,
+         0.5f, -0.5f, 0.0f,
+         0.0f,  0.5f, 0.0f,
+    };
+
+    GLuint indices[] =
+    {
+        0, 2, 1,
+    };
+
     // Create reference containers for the Vertex Array Object and the Vertex Buffer Object
-    GLuint VAO, VBO;
+    GLuint VAO, VBO, EBO;
 
     // Generate the VAO and VBO with only 1 object each
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
 
     // Make the VAO the current Vertex Array Object
     glBindVertexArray(VAO);
@@ -77,6 +83,9 @@ int main(int argc, char* argv[])
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
     // Configure the Vertex Attribute so that OpenGL knows hwo to read the VBO
     // Enable the Vertex Attribute so that OpenGL knows to use it
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
@@ -85,7 +94,8 @@ int main(int argc, char* argv[])
     // Bind both the VBO and VAO to 0 so that we don't accidentally modify the VAO and VBO
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
-
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    
     // Specify the color of the background
     glClearColor(0.07f, 0.13f, 0.17f, 1.00f);
     // Clean the back buffer and assign a new color to it
@@ -107,7 +117,7 @@ int main(int argc, char* argv[])
         // Draw the triangle using the GL_TRIANGLES primitive
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 
         // Render
         ImGui::Render();
@@ -118,6 +128,7 @@ int main(int argc, char* argv[])
     // Cleanup
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
     glDeleteProgram(shaderProgram);
 
     delete input;
