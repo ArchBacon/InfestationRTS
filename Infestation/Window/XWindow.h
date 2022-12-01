@@ -6,6 +6,7 @@ class Context;
 
 struct XWindowProperties
 {
+    int x, y;
     int width, height;
     const char* title;
 };
@@ -33,8 +34,8 @@ public:
     int GetWidth() const { return props.width; }
     int GetHeight() const { return props.height; }
 
-    // Get Window Position X
-    // Get Window Position Y
+    int GetPositionX() const { return props.x; }
+    int GetPositionY() const { return props.y; }
 
     Window GetNativeWindow() const { return window; }
     Display* GetNativeDisplay() const { return display; }

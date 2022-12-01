@@ -5,7 +5,7 @@
 #include "imgui_impl_opengl3.h"
 
 XWindow::XWindow(const int width, const int height, const char* title)
-    : props({width, height, title})
+    : props({0, 0, width, height, title})
 {
     windowCreated = CreateWindow(width, height, title);
     eglContext = new Context(GetNativeWindow());
@@ -44,7 +44,7 @@ bool XWindow::CreateWindow(int width, int height, const char* title)
     window = XCreateWindow(
         display,
         DefaultRootWindow(display),
-        0, 0,                           // window position
+        props.x, props.y,               // window position
         width, height,                  // window height
         2,                              // border width
         CopyFromParent,                 // depth
