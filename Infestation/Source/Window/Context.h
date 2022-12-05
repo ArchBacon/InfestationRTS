@@ -13,7 +13,8 @@ public:
     ~Context();
 
     EGLDisplay GetDisplay() const { return display; }
+
     EGLSurface GetSurface() const { return surface; }
+
     EGLContext GetContext() const { return context; }
 };
-

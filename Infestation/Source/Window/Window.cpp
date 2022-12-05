@@ -44,15 +44,15 @@ bool MyWindow::CreateWindow(int width, int height, const char* title)
     window = XCreateWindow(
         display,
         DefaultRootWindow(display),
-        props.x, props.y,               // window position
-        width, height,                  // window height
-        2,                              // border width
-        CopyFromParent,                 // depth
-        CopyFromParent,                 // class
-        CopyFromParent,                 // visual
-        CopyFromParent,                 // value mask
-        &swa                            // attributes
-    );
+        props.x, props.y, // window position
+        width, height, // window height
+        2, // border width
+        CopyFromParent, // depth
+        CopyFromParent, // class
+        CopyFromParent, // visual
+        CopyFromParent, // value mask
+        &swa // attributes
+        );
 
     XMapWindow(display, window);
     XStoreName(display, window, title);
@@ -73,13 +73,14 @@ bool MyWindow::CreateWindow(int width, int height, const char* title)
 void MyWindow::InitializeImGui()
 {
     // Init ImGui
-    const char* glsl_version = "#version 100";
+    auto glsl_version = "#version 100";
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
 
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.DisplaySize = ImVec2((float)GetWidth(), (float)GetHeight());
+    ImGuiIO& io = ImGui::GetIO();
+    (void)io;
+    io.DisplaySize = ImVec2(static_cast<float>(GetWidth()), static_cast<float>(GetHeight()));
     // io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 

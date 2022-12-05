@@ -14,12 +14,13 @@ void Input::PollInputEvents(MyWindow* window)
         window->GetNativeDisplay(),
         window->GetNativeWindow(),
         &window_returned, &window_returned, // Window in which the cursor position is taken from
-        &root_x, &root_y,                   // cursor position on screen
-        &win_x, &win_y,                     // cursor position on window
+        &root_x, &root_y, // cursor position on screen
+        &win_x, &win_y, // cursor position on window
         &mask_return
-    );
+        );
 
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGuiIO& io = ImGui::GetIO();
+    (void)io;
     io.MousePos = ImVec2(static_cast<float>(win_x), static_cast<float>(win_y));
     io.MouseDown[0] = mask_return & (1 << 8); // left
     io.MouseDown[1] = mask_return & (1 << 10); // right

@@ -1,151 +1,150 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|ARM">
-      <Configuration>Debug</Configuration>
-      <Platform>ARM</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|ARM">
-      <Configuration>Release</Configuration>
-      <Platform>ARM</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|ARM64">
-      <Configuration>Debug</Configuration>
-      <Platform>ARM64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|ARM64">
-      <Configuration>Release</Configuration>
-      <Platform>ARM64</Platform>
-    </ProjectConfiguration>
-  </ItemGroup>
-  <PropertyGroup Label="Globals">
-    <ProjectGuid>{df291632-39bc-46c7-9006-8503956dff41}</ProjectGuid>
-    <Keyword>Linux</Keyword>
-    <RootNamespace>Infestation</RootNamespace>
-    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
-    <ApplicationType>Linux</ApplicationType>
-    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
-    <TargetLinuxPlatform>Raspberry</TargetLinuxPlatform>
-    <LinuxProjectType>{8748239F-558C-44D1-944B-07B09C35B330}</LinuxProjectType>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
-    <UseDebugLibraries>true</UseDebugLibraries>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
-    <UseDebugLibraries>false</UseDebugLibraries>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
-    <UseDebugLibraries>false</UseDebugLibraries>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
-    <UseDebugLibraries>true</UseDebugLibraries>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings" />
-  <ImportGroup Label="Shared" />
-  <ImportGroup Label="PropertySheets" />
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <LibraryPath>
-    </LibraryPath>
-    <IncludePath>
-    </IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <OutDir>$(ProjectDir)..\Binaries\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)..\Intermediate\$(Platform)\$(Configuration)\</IntDir>
-    <RemoteIntRelDir>$(RemoteProjectRelDir)/../Binaries/$(Platform)/$(Configuration)</RemoteIntRelDir>
-    <RemoteOutRelDir>$(RemoteProjectRelDir)/../Intermediate/$(Platform)/$(Configuration)</RemoteOutRelDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <OutDir>$(ProjectDir)..\Binaries\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)..\Intermediate\$(Platform)\$(Configuration)\</IntDir>
-    <RemoteIntRelDir>$(RemoteProjectRelDir)/../Binaries/$(Platform)/$(Configuration)</RemoteIntRelDir>
-    <RemoteOutRelDir>$(RemoteProjectRelDir)/../Intermediate/$(Platform)/$(Configuration)</RemoteOutRelDir>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <Link>
-      <LibraryDependencies>X11;EGL;GLESv2;assimp;</LibraryDependencies>
-      <AdditionalLibraryDirectories>%(Link.AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Link>
-    <RemotePostBuildEvent />
-    <ClCompile>
-      <PreprocessorDefinitions>PLATFORM_RASPBERRY;_DEBUG;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <RemotePreBuildEvent>
-      <Command>
-      </Command>
-    </RemotePreBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <Link>
-      <LibraryDependencies>X11;EGL;</LibraryDependencies>
-    </Link>
-    <RemotePostBuildEvent />
-  </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Source\Shaders\EBO.cpp" />
-    <ClCompile Include="Source\Shaders\Shader.cpp" />
-    <ClCompile Include="Source\Shaders\VAO.cpp" />
-    <ClCompile Include="Source\Shaders\VBO.cpp" />
-    <ClCompile Include="Source\Window\Context.cpp" />
-    <ClCompile Include="Source\Window\Input.cpp" />
-    <ClCompile Include="Source\Window\Window.cpp" />
-    <ClCompile Include="vendor\imgui\imgui.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
-    <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Shaders\EBO.h" />
-    <ClInclude Include="Source\Shaders\Shader.h" />
-    <ClInclude Include="Source\Shaders\VAO.h" />
-    <ClInclude Include="Source\Shaders\VBO.h" />
-    <ClInclude Include="Source\Window\Context.h" />
-    <ClInclude Include="Source\Window\Input.h" />
-    <ClInclude Include="Source\Window\Window.h" />
-    <ClInclude Include="vendor\imgui\imconfig.h" />
-    <ClInclude Include="vendor\imgui\imgui.h" />
-    <ClInclude Include="vendor\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="vendor\imgui\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="vendor\imgui\imgui_internal.h" />
-    <ClInclude Include="vendor\imgui\imstb_rectpack.h" />
-    <ClInclude Include="vendor\imgui\imstb_textedit.h" />
-    <ClInclude Include="vendor\imgui\imstb_truetype.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Source\Shaders\default.all" />
-    <None Include="Source\Shaders\default.frag" />
-    <None Include="Source\Shaders\default.vert" />
-  </ItemGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <ClCompile>
-      <PreprocessorDefinitions>PLATFORM_RASPBERRY;_NDEBUG;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <ClCompile>
-      <PreprocessorDefinitions>PLATFORM_RASPBERRY;_NDEBUG;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <ClCompile>
-      <PreprocessorDefinitions>PLATFORM_RASPBERRY;_DEBUG;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-  </ItemDefinitionGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+    <ItemGroup Label="ProjectConfigurations">
+        <ProjectConfiguration Include="Debug|ARM">
+            <Configuration>Debug</Configuration>
+            <Platform>ARM</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|ARM">
+            <Configuration>Release</Configuration>
+            <Platform>ARM</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Debug|ARM64">
+            <Configuration>Debug</Configuration>
+            <Platform>ARM64</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|ARM64">
+            <Configuration>Release</Configuration>
+            <Platform>ARM64</Platform>
+        </ProjectConfiguration>
+    </ItemGroup>
+    <PropertyGroup Label="Globals">
+        <ProjectGuid>{df291632-39bc-46c7-9006-8503956dff41}</ProjectGuid>
+        <Keyword>Linux</Keyword>
+        <RootNamespace>Infestation</RootNamespace>
+        <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+        <ApplicationType>Linux</ApplicationType>
+        <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+        <TargetLinuxPlatform>Raspberry</TargetLinuxPlatform>
+        <LinuxProjectType>{8748239F-558C-44D1-944B-07B09C35B330}</LinuxProjectType>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+        <UseDebugLibraries>true</UseDebugLibraries>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+        <UseDebugLibraries>false</UseDebugLibraries>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+        <UseDebugLibraries>false</UseDebugLibraries>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+        <UseDebugLibraries>true</UseDebugLibraries>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+    <ImportGroup Label="ExtensionSettings" />
+    <ImportGroup Label="Shared" />
+    <ImportGroup Label="PropertySheets" />
+    <PropertyGroup Label="UserMacros" />
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+        <LibraryPath>
+        </LibraryPath>
+        <IncludePath>
+        </IncludePath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+        <OutDir>$(ProjectDir)..\Binaries\$(Platform)\$(Configuration)\</OutDir>
+        <IntDir>$(ProjectDir)..\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+        <RemoteIntRelDir>$(RemoteProjectRelDir)/../Binaries/$(Platform)/$(Configuration)</RemoteIntRelDir>
+        <RemoteOutRelDir>$(RemoteProjectRelDir)/../Intermediate/$(Platform)/$(Configuration)</RemoteOutRelDir>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" />
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+        <OutDir>$(ProjectDir)..\Binaries\$(Platform)\$(Configuration)\</OutDir>
+        <IntDir>$(ProjectDir)..\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+        <RemoteIntRelDir>$(RemoteProjectRelDir)/../Binaries/$(Platform)/$(Configuration)</RemoteIntRelDir>
+        <RemoteOutRelDir>$(RemoteProjectRelDir)/../Intermediate/$(Platform)/$(Configuration)</RemoteOutRelDir>
+    </PropertyGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+        <Link>
+            <LibraryDependencies>X11;EGL;GLESv2;assimp;</LibraryDependencies>
+            <AdditionalLibraryDirectories>%(Link.AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+        </Link>
+        <RemotePostBuildEvent />
+        <ClCompile>
+            <PreprocessorDefinitions>PLATFORM_RASPBERRY;_DEBUG;</PreprocessorDefinitions>
+            <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ClCompile>
+        <PreBuildEvent>
+            <Command>
+            </Command>
+        </PreBuildEvent>
+        <RemotePreBuildEvent>
+            <Command>
+            </Command>
+        </RemotePreBuildEvent>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+        <Link>
+            <LibraryDependencies>X11;EGL;</LibraryDependencies>
+        </Link>
+        <RemotePostBuildEvent />
+    </ItemDefinitionGroup>
+    <ItemGroup>
+        <ClCompile Include="main.cpp" />
+        <ClCompile Include="Source\Shaders\EBO.cpp" />
+        <ClCompile Include="Source\Shaders\Shader.cpp" />
+        <ClCompile Include="Source\Shaders\VAO.cpp" />
+        <ClCompile Include="Source\Shaders\VBO.cpp" />
+        <ClCompile Include="Source\Window\Context.cpp" />
+        <ClCompile Include="Source\Window\Input.cpp" />
+        <ClCompile Include="Source\Window\Window.cpp" />
+        <ClCompile Include="vendor\imgui\imgui.cpp" />
+        <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
+        <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
+        <ClCompile Include="vendor\imgui\imgui_impl_opengl3.cpp" />
+        <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
+        <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
+    </ItemGroup>
+    <ItemGroup>
+        <ClInclude Include="Source\Shaders\EBO.h" />
+        <ClInclude Include="Source\Shaders\Shader.h" />
+        <ClInclude Include="Source\Shaders\VAO.h" />
+        <ClInclude Include="Source\Shaders\VBO.h" />
+        <ClInclude Include="Source\Window\Context.h" />
+        <ClInclude Include="Source\Window\Input.h" />
+        <ClInclude Include="Source\Window\Window.h" />
+        <ClInclude Include="vendor\imgui\imconfig.h" />
+        <ClInclude Include="vendor\imgui\imgui.h" />
+        <ClInclude Include="vendor\imgui\imgui_impl_opengl3.h" />
+        <ClInclude Include="vendor\imgui\imgui_impl_opengl3_loader.h" />
+        <ClInclude Include="vendor\imgui\imgui_internal.h" />
+        <ClInclude Include="vendor\imgui\imstb_rectpack.h" />
+        <ClInclude Include="vendor\imgui\imstb_textedit.h" />
+        <ClInclude Include="vendor\imgui\imstb_truetype.h" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Source\Shaders\default.frag" />
+        <None Include="Source\Shaders\default.vert" />
+    </ItemGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+        <ClCompile>
+            <PreprocessorDefinitions>PLATFORM_RASPBERRY;_NDEBUG;</PreprocessorDefinitions>
+            <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ClCompile>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+        <ClCompile>
+            <PreprocessorDefinitions>PLATFORM_RASPBERRY;_NDEBUG;</PreprocessorDefinitions>
+            <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ClCompile>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+        <ClCompile>
+            <PreprocessorDefinitions>PLATFORM_RASPBERRY;_DEBUG;</PreprocessorDefinitions>
+            <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ClCompile>
+    </ItemDefinitionGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+    <ImportGroup Label="ExtensionTargets" />
 </Project>

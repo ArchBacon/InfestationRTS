@@ -5,8 +5,8 @@
 class Input
 {
 public:
-	Input() = default;
-	~Input() = default;
+    Input() = default;
+    ~Input() = default;
 
-	void PollInputEvents(MyWindow* window);
+    void PollInputEvents(MyWindow* window);
 };

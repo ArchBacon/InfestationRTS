@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     // Specify the viewport of OpenGL in the window
     glViewport(window->GetPositionX(), window->GetPositionY(), window->GetWidth(), window->GetHeight());
 
-    Shader shaderProgram("../../../Source/Shaders/default.all");
+    Shader shaderProgram("../../../Source/Shaders/default.vert", "../../../Source/Shaders/default.frag");
 
     VAO VAO1;
     VAO1.Bind();
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
         // Tell OpenGL which Shader Program we want to use
         // Bind the VAO so OpenGL knows to use it
         // Draw the triangle using the GL_TRIANGLES primitive
-        shaderProgram.Use();
+        shaderProgram.Activate();
         VAO1.Bind();
         glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
         // Render
@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
     VAO1.Delete();
     VBO1.Delete();
     EBO1.Delete();
-    shaderProgram.Unbind();
+    shaderProgram.Delete();
 
     delete input;
     delete window;

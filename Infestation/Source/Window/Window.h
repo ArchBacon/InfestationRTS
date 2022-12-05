@@ -23,7 +23,10 @@ class MyWindow
     bool windowCreated = false;
 
 public:
-    MyWindow(): MyWindow(640, 480, "Hello Window!") {}
+    MyWindow(): MyWindow(640, 480, "Hello Window!")
+    {
+    }
+
     MyWindow(int width, int height, const char* title);
     ~MyWindow() = default;
 
@@ -32,12 +35,15 @@ public:
     void SwapBuffers() const;
 
     int GetWidth() const { return props.width; }
+
     int GetHeight() const { return props.height; }
 
     int GetPositionX() const { return props.x; }
+
     int GetPositionY() const { return props.y; }
 
     Window GetNativeWindow() const { return window; }
+
     Display* GetNativeDisplay() const { return display; }
 
 private:
