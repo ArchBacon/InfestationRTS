@@ -1,8 +1,8 @@
 #include "Input.h"
+#include <imgui/imgui.h>
 #include <X11/Xlib.h>
-#include <imgui.h>
 
-void Input::PollInputEvents(XWindow* window)
+void Input::PollInputEvents(MyWindow* window)
 {
     // Poll input events
     Window window_returned;

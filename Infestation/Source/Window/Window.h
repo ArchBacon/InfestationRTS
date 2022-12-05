@@ -4,16 +4,16 @@
 
 class Context;
 
-struct XWindowProperties
+struct WindowProperties
 {
     int x, y;
     int width, height;
     const char* title;
 };
 
-class XWindow
+class MyWindow
 {
-    XWindowProperties props;
+    WindowProperties props;
     Context* eglContext;
 
     Window window = {};
@@ -23,9 +23,9 @@ class XWindow
     bool windowCreated = false;
 
 public:
-    XWindow(): XWindow(640, 480, "Hello Window!") {}
-    XWindow(int width, int height, const char* title);
-    ~XWindow() = default;
+    MyWindow(): MyWindow(640, 480, "Hello Window!") {}
+    MyWindow(int width, int height, const char* title);
+    ~MyWindow() = default;
 
     void Destroy();
     bool IsValid() const;

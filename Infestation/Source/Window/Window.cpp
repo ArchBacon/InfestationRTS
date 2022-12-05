@@ -1,10 +1,10 @@
-﻿#include "XWindow.h"
+﻿#include "Window.h"
 #include <cstdio>
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_opengl3.h>
 #include "Context.h"
-#include "imgui.h"
-#include "imgui_impl_opengl3.h"
 
-XWindow::XWindow(const int width, const int height, const char* title)
+MyWindow::MyWindow(const int width, const int height, const char* title)
     : props({0, 0, width, height, title})
 {
     windowCreated = CreateWindow(width, height, title);
@@ -12,24 +12,24 @@ XWindow::XWindow(const int width, const int height, const char* title)
     InitializeImGui();
 }
 
-void XWindow::Destroy()
+void MyWindow::Destroy()
 {
     destroyed = true;
     ImGui::DestroyContext();
     XCloseDisplay(display);
 }
 
-bool XWindow::IsValid() const
+bool MyWindow::IsValid() const
 {
     return windowCreated && !destroyed;
 }
 
-void XWindow::SwapBuffers() const
+void MyWindow::SwapBuffers() const
 {
     eglSwapBuffers(eglContext->GetDisplay(), eglContext->GetSurface());
 }
 
-bool XWindow::CreateWindow(int width, int height, const char* title)
+bool MyWindow::CreateWindow(int width, int height, const char* title)
 {
     XSetWindowAttributes swa;
     swa.event_mask = ExposureMask | PointerMotionMask | KeyPressMask;
@@ -70,7 +70,7 @@ bool XWindow::CreateWindow(int width, int height, const char* title)
     return true;
 }
 
-void XWindow::InitializeImGui()
+void MyWindow::InitializeImGui()
 {
     // Init ImGui
     const char* glsl_version = "#version 100";
@@ -79,7 +79,7 @@ void XWindow::InitializeImGui()
     ImGui::CreateContext();
 
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.DisplaySize = ImVec2(GetWidth(), GetHeight());
+    io.DisplaySize = ImVec2((float)GetWidth(), (float)GetHeight());
     // io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 

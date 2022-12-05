@@ -3,12 +3,24 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <PreLaunchCommand>export DISPLAY=:0.0</PreLaunchCommand>
     <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
+    <RemoteTarget>-1754389256;192.168.137.135 (username=, port=22, authentication=Password)</RemoteTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <PreLaunchCommand>export DISPLAY=:0.0</PreLaunchCommand>
     <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
+    <RemoteTarget>-1754389256;192.168.137.135 (username=, port=22, authentication=Password)</RemoteTarget>
   </PropertyGroup>
   <PropertyGroup>
-    <ShowAllFiles>false</ShowAllFiles>
+    <ShowAllFiles>true</ShowAllFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <RemoteTarget>1837886233;192.168.1.28 (username=, port=22, authentication=Password)</RemoteTarget>
+    <PreLaunchCommand>export DISPLAY=:0.0</PreLaunchCommand>
+    <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <RemoteTarget>1837886233;192.168.1.28 (username=, port=22, authentication=Password)</RemoteTarget>
+    <PreLaunchCommand>export DISPLAY=:0.0</PreLaunchCommand>
+    <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

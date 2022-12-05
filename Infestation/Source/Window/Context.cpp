@@ -2,8 +2,6 @@
 #include <cstdio>
 #include <EGL/egl.h>
 
-#include "XWindow.h"
-
 Context::Context(Window window)
 {
     const EGLint configAttributes[] =

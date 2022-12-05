@@ -1,6 +1,6 @@
 #pragma once
 
-#include "XWindow.h"
+#include "Window/Window.h"
 
 class Input
 {
@@ -8,5 +8,5 @@ public:
 	Input() = default;
 	~Input() = default;
 
-	void PollInputEvents(XWindow* window);
+	void PollInputEvents(MyWindow* window);
 };

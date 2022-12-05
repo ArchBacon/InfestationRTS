@@ -52,6 +52,19 @@
     <IncludePath>
     </IncludePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>$(ProjectDir)..\Binaries\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <RemoteIntRelDir>$(RemoteProjectRelDir)/../Binaries/$(Platform)/$(Configuration)</RemoteIntRelDir>
+    <RemoteOutRelDir>$(RemoteProjectRelDir)/../Intermediate/$(Platform)/$(Configuration)</RemoteOutRelDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <OutDir>$(ProjectDir)..\Binaries\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <RemoteIntRelDir>$(RemoteProjectRelDir)/../Binaries/$(Platform)/$(Configuration)</RemoteIntRelDir>
+    <RemoteOutRelDir>$(RemoteProjectRelDir)/../Intermediate/$(Platform)/$(Configuration)</RemoteOutRelDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Link>
       <LibraryDependencies>X11;EGL;GLESv2;</LibraryDependencies>
@@ -60,7 +73,7 @@
     <RemotePostBuildEvent />
     <ClCompile>
       <PreprocessorDefinitions>PLATFORM_RASPBERRY;_DEBUG;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(projectDir)imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <PreBuildEvent>
       <Command>
@@ -78,83 +91,58 @@
     <RemotePostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="imgui\imgui.cpp" />
-    <ClCompile Include="imgui\imgui_demo.cpp" />
-    <ClCompile Include="imgui\imgui_draw.cpp" />
-    <ClCompile Include="imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="imgui\imgui_tables.cpp" />
-    <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Window\Context.cpp" />
-    <ClCompile Include="Window\Input.cpp" />
-    <ClCompile Include="Window\XWindow.cpp">
-      <ClangMode>true</ClangMode>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
-      <DebugInformationFormat>FullDebug</DebugInformationFormat>
-      <CAdditionalWarning>switch;no-deprecated-declarations;empty-body;conversion;return-type;parentheses;no-pointer-sign;no-format;uninitialized;unreachable-code;unused-function;unused-value;unused-variable;</CAdditionalWarning>
-      <CppAdditionalWarning>switch;no-deprecated-declarations;empty-body;conversion;return-type;parentheses;no-format;uninitialized;unreachable-code;unused-function;unused-value;unused-variable;</CppAdditionalWarning>
-      <Optimization>Disabled</Optimization>
-      <StrictAliasing>false</StrictAliasing>
-      <ProgramDatabaseFileName>G:\Perforce\Year1\BlockB\Infestation\Infestation\obj\ARM\Debug\</ProgramDatabaseFileName>
-      <UnrollLoops>false</UnrollLoops>
-      <LinkTimeOptimization>false</LinkTimeOptimization>
-      <NoCommonBlocks>false</NoCommonBlocks>
-      <OmitFramePointers>false</OmitFramePointers>
-      <ExceptionHandling>Enabled</ExceptionHandling>
-      <ObjCExceptionHandling>Disabled</ObjCExceptionHandling>
-      <MakeStringsReadOnly>true</MakeStringsReadOnly>
-      <ThreadSafeStatics>Yes</ThreadSafeStatics>
-      <RelaxIEEE>false</RelaxIEEE>
-      <HideInlineMethods>false</HideInlineMethods>
-      <PositionIndependentCode>false</PositionIndependentCode>
-      <SymbolsHiddenByDefault>false</SymbolsHiddenByDefault>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <ObjectFileName>G:\Perforce\Year1\BlockB\Infestation\Infestation\obj\ARM\Debug\%(filename).o</ObjectFileName>
-      <CompileAs>Default</CompileAs>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <Verbose>false</Verbose>
-      <EnablePREfast>false</EnablePREfast>
-      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
-      <PrecompiledHeaderOutputFileDirectory>G:\Perforce\Year1\BlockB\Infestation\Infestation\obj\ARM\Debug\</PrecompiledHeaderOutputFileDirectory>
-      <PrecompiledHeaderCompileAs>CompileAsCpp</PrecompiledHeaderCompileAs>
-      <CLanguageStandard>c11</CLanguageStandard>
-      <CppLanguageStandard>c++11</CppLanguageStandard>
-      <ObjCAutomaticRefCounting>true</ObjCAutomaticRefCounting>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ThumbMode>Thumb</ThumbMode>
-      <EnableNeonCodegen>false</EnableNeonCodegen>
-      <LinkCompiled>true</LinkCompiled>
-    </ClCompile>
+    <ClCompile Include="Source\Shaders\EBO.cpp" />
+    <ClCompile Include="Source\Shaders\Shader.cpp" />
+    <ClCompile Include="Source\Shaders\VAO.cpp" />
+    <ClCompile Include="Source\Shaders\VBO.cpp" />
+    <ClCompile Include="Source\Window\Context.cpp" />
+    <ClCompile Include="Source\Window\Input.cpp" />
+    <ClCompile Include="Source\Window\Window.cpp" />
+    <ClCompile Include="vendor\imgui\imgui.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="imgui\imconfig.h" />
-    <ClInclude Include="imgui\imgui.h" />
-    <ClInclude Include="imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="imgui\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="imgui\imgui_internal.h" />
-    <ClInclude Include="imgui\imstb_rectpack.h" />
-    <ClInclude Include="imgui\imstb_textedit.h" />
-    <ClInclude Include="imgui\imstb_truetype.h" />
-    <ClInclude Include="Window\Context.h" />
-    <ClInclude Include="Window\Input.h" />
-    <ClInclude Include="Window\XWindow.h" />
+    <ClInclude Include="Source\Shaders\EBO.h" />
+    <ClInclude Include="Source\Shaders\Shader.h" />
+    <ClInclude Include="Source\Shaders\VAO.h" />
+    <ClInclude Include="Source\Shaders\VBO.h" />
+    <ClInclude Include="Source\Window\Context.h" />
+    <ClInclude Include="Source\Window\Input.h" />
+    <ClInclude Include="Source\Window\Window.h" />
+    <ClInclude Include="vendor\imgui\imconfig.h" />
+    <ClInclude Include="vendor\imgui\imgui.h" />
+    <ClInclude Include="vendor\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="vendor\imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="vendor\imgui\imstb_rectpack.h" />
+    <ClInclude Include="vendor\imgui\imstb_textedit.h" />
+    <ClInclude Include="vendor\imgui\imstb_truetype.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Shaders\default.frag" />
+    <None Include="Source\Shaders\default.vert" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <PreprocessorDefinitions>PLATFORM_RASPBERRY;_NDEBUG;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(solutionDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
       <PreprocessorDefinitions>PLATFORM_RASPBERRY;_NDEBUG;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(solutionDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
       <PreprocessorDefinitions>PLATFORM_RASPBERRY;_DEBUG;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(solutionDir)vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectDir)Source;$(projectDir)vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

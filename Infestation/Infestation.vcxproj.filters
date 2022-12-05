@@ -2,78 +2,116 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Window\XWindow.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui.cpp">
+    <ClCompile Include="vendor\imgui\imgui.cpp">
       <Filter>Dependencies\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="imgui\imgui_demo.cpp">
+    <ClCompile Include="vendor\imgui\imgui_demo.cpp">
       <Filter>Dependencies\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="imgui\imgui_draw.cpp">
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp">
       <Filter>Dependencies\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_opengl3.cpp">
+    <ClCompile Include="vendor\imgui\imgui_impl_opengl3.cpp">
       <Filter>Dependencies\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="imgui\imgui_tables.cpp">
+    <ClCompile Include="vendor\imgui\imgui_tables.cpp">
       <Filter>Dependencies\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="imgui\imgui_widgets.cpp">
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
       <Filter>Dependencies\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Window\Context.cpp">
-      <Filter>Window</Filter>
+    <ClCompile Include="Source\Window\Context.cpp">
+      <Filter>Source\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Window\Input.cpp">
-      <Filter>Window</Filter>
+    <ClCompile Include="Source\Window\Input.cpp">
+      <Filter>Source\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window\Window.cpp">
+      <Filter>Source\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Shaders\EBO.cpp">
+      <Filter>Source\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Shaders\Shader.cpp">
+      <Filter>Source\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Shaders\VAO.cpp">
+      <Filter>Source\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Shaders\VBO.cpp">
+      <Filter>Source\Shaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Window">
-      <UniqueIdentifier>{4ea8d4ae-c5d0-43a8-a95a-d3a2ee70576e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Dependencies">
       <UniqueIdentifier>{3345e475-93d1-4472-a32e-8a549572e643}</UniqueIdentifier>
     </Filter>
     <Filter Include="Dependencies\ImGui">
       <UniqueIdentifier>{d80c8c8e-ac41-4f43-85d6-b841d8102b59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{7f0ef9da-9b39-4cf8-8732-bcbb63dfd6c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Window">
+      <UniqueIdentifier>{228d3148-703a-41a3-9398-f8f2706875ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Shaders">
+      <UniqueIdentifier>{43f5aa09-eb86-4ffa-a0ea-641bc786cd6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window\XWindow.h">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imstb_truetype.h">
+    <ClInclude Include="vendor\imgui\imstb_truetype.h">
       <Filter>Dependencies\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="imgui\imconfig.h">
+    <ClInclude Include="vendor\imgui\imconfig.h">
       <Filter>Dependencies\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="imgui\imgui.h">
+    <ClInclude Include="vendor\imgui\imgui.h">
       <Filter>Dependencies\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="imgui\imgui_impl_opengl3.h">
+    <ClInclude Include="vendor\imgui\imgui_impl_opengl3.h">
       <Filter>Dependencies\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
+    <ClInclude Include="vendor\imgui\imgui_impl_opengl3_loader.h">
       <Filter>Dependencies\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="imgui\imgui_internal.h">
+    <ClInclude Include="vendor\imgui\imgui_internal.h">
       <Filter>Dependencies\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="imgui\imstb_rectpack.h">
+    <ClInclude Include="vendor\imgui\imstb_rectpack.h">
       <Filter>Dependencies\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="imgui\imstb_textedit.h">
+    <ClInclude Include="vendor\imgui\imstb_textedit.h">
       <Filter>Dependencies\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Window\Context.h">
-      <Filter>Window</Filter>
+    <ClInclude Include="Source\Window\Window.h">
+      <Filter>Source\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Window\Input.h">
-      <Filter>Window</Filter>
+    <ClInclude Include="Source\Window\Context.h">
+      <Filter>Source\Window</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Window\Input.h">
+      <Filter>Source\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shaders\VBO.h">
+      <Filter>Source\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shaders\EBO.h">
+      <Filter>Source\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shaders\Shader.h">
+      <Filter>Source\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shaders\VAO.h">
+      <Filter>Source\Shaders</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Shaders\default.frag">
+      <Filter>Source\Shaders</Filter>
+    </None>
+    <None Include="Source\Shaders\default.vert">
+      <Filter>Source\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
