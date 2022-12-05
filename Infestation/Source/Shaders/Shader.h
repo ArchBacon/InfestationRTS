@@ -1,13 +1,21 @@
 ﻿#pragma once
 
-#include <GLES3/gl31.h>
+#include <string>
+
+class ShaderProgramSource;
 
 class Shader
 {
 public:
-    GLuint ID;
-    Shader(const char* vertexFile, const char* fragmentFile);
+	Shader(const char* path);
+	~Shader() = default;
 
-    void Activate() const;
-    void Delete() const;
+	void Use();
+	void Unbind();
+
+private:
+	int shaderID;
+	ShaderProgramSource ReadShaderFile(const char* path);
+	int CompileShader(unsigned int shaderType, const std::string& source);
+	void CreateShader(ShaderProgramSource& source);
 };

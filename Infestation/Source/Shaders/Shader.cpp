@@ -1,62 +1,126 @@
 ﻿#include "Shader.h"
 #include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <GLES2/gl2.h>
 
-const char* vertexShaderSource = "#version 300 es\n"
-"precision mediump float;\n"
-"layout (location = 0) in vec3 aPos;\n"
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"}\0";
-const char* fragmentShaderSource = "#version 300 es\n"
-"precision mediump float;\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\n\0";
-
-Shader::Shader(const char* vertexFile, const char* fragmentFile)
+struct ShaderProgramSource
 {
-    std::string vertexCode = vertexShaderSource;
-    std::string fragmentCode = fragmentShaderSource;
+	std::string vertexShader;
+	std::string fragmentShader;
+};
 
-    const char* vertexSource = vertexCode.c_str();
-    const char* fragmentSource = fragmentCode.c_str();
-
-    // Create Vertex Shader Object and get reference
-    // Attach Vertex Shader source to the Vertex Shader Object
-    // Compile the Vertex Shader into machine code
-    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexSource, nullptr);
-    glCompileShader(vertexShader);
-
-    // Create Fragment Shader Object and get reference
-    // Attach Fragment Shader source to the Fragment Shader Object
-    // Compile the Fragment Shader into machine code
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentSource, nullptr);
-    glCompileShader(fragmentShader);
-
-    // Create Shader Program Object and get its reference
-    // Attach the Vertex and Fragment Shaders to the Shader Program
-    // Wrap-up/Link all the shaders together into the Shader Program
-    ID = glCreateProgram();
-    glAttachShader(ID, vertexShader);
-    glAttachShader(ID, fragmentShader);
-    glLinkProgram(ID);
-
-    // Delete the now useless Vertex and Fragment Shader objects
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
+Shader::Shader(const char* path)
+{
+	ShaderProgramSource source = ReadShaderFile(path);
+	CreateShader(source);
 }
 
-void Shader::Activate() const
+void Shader::Use()
 {
-    glUseProgram(ID);
+	glUseProgram(shaderID);
 }
 
-void Shader::Delete() const
+void Shader::Unbind()
 {
-    glDeleteProgram(ID);
+	glUseProgram(0);
+}
+
+ShaderProgramSource Shader::ReadShaderFile(const char* path)
+{
+	ShaderProgramSource source;
+
+	//Open file
+	//Check for #shader and #vertexShader tag
+	//Save lines to the respective string stream
+	std::ifstream file;
+	std::string vertexShaderSource;
+	std::string fragmentShaderSource;
+
+	file.open(path);
+
+	if (file.fail()) {
+		printf("File does not exist \n");
+	}
+
+	int shaderType = -1;
+	if (file.is_open())
+	{
+		std::string line;
+
+		while (std::getline(file, line))
+		{
+			if (line.find("#shader") != std::string::npos)
+			{
+				if (line.find("vertex") != std::string::npos)
+					shaderType = 0;
+
+				if (line.find("fragment") != std::string::npos)
+					shaderType = 1;
+
+				continue;
+			}
+
+			if (shaderType == 0)
+				source.vertexShader += line += "\n";
+
+			if (shaderType == 1)
+				source.fragmentShader += line += "\n";
+
+		}
+	}
+	else
+	{
+		printf("File not found\n");
+	}
+	return source;
+}
+
+int Shader::CompileShader(unsigned int shaderType, const std::string& source)
+{
+	const char* src = source.c_str();
+
+	unsigned int shader;
+	shader = glCreateShader(shaderType);
+	glShaderSource(shader, 1, &src, NULL);
+	glCompileShader(shader);
+
+	int success;
+	char infoLog[512];
+	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+	if (success == false)
+	{
+		glGetShaderInfoLog(shader, 512, NULL, infoLog);
+		std::cout << "Error compiling shader" << infoLog << std::endl;
+	}
+
+	return shader;
+}
+
+void Shader::CreateShader(ShaderProgramSource& source)
+{
+	shaderID = glCreateProgram();
+
+	unsigned int vertexShader = CompileShader(GL_VERTEX_SHADER, source.vertexShader);
+	unsigned int fragmentShader = CompileShader(GL_FRAGMENT_SHADER, source.fragmentShader);
+
+	glAttachShader(shaderID, vertexShader);
+	glAttachShader(shaderID, fragmentShader);
+	glLinkProgram(shaderID);
+	//glValidateProgram(shaderID);
+
+	int shaderSuccess;
+	char shaderInfoLog[512];
+
+	glGetProgramiv(shaderID, GL_LINK_STATUS, &shaderSuccess);
+	if (shaderSuccess == false)
+	{
+		glGetProgramInfoLog(shaderID, 512, NULL, shaderInfoLog);
+		std::cout << "Error creating shader program " << shaderInfoLog << std::endl;
+
+	}
+
+	glDeleteShader(vertexShader);
+	glDeleteShader(fragmentShader);
 }

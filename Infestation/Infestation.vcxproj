@@ -67,7 +67,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Link>
-      <LibraryDependencies>X11;EGL;GLESv2;</LibraryDependencies>
+      <LibraryDependencies>X11;EGL;GLESv2;assimp;</LibraryDependencies>
       <AdditionalLibraryDirectories>%(Link.AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <RemotePostBuildEvent />
@@ -124,6 +124,7 @@
     <ClInclude Include="vendor\imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Source\Shaders\default.all" />
     <None Include="Source\Shaders\default.frag" />
     <None Include="Source\Shaders\default.vert" />
   </ItemGroup>

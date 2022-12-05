@@ -15,8 +15,8 @@ GLfloat vertices[] =
 	-0.5f, -0.5f, 0.0f, // Lower left corner
 	0.5f, -0.5f, 0.0f, // Lower right corner
 	0.0f, 0.5f, 0.0f, // Upper corner
-	-0.5f / 2, 0.5f / 2, 0.0f, // Inner left
-	0.5f / 2, 0.5f / 2, 0.0f, // Inner right
+	-0.5f, 0.5f, 0.0f, // Inner left
+	0.5f, 0.5f, 0.0f, // Inner right
 	0.0f, -0.5f, 0.0f // Inner down
 };
 
@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     // Specify the viewport of OpenGL in the window
     glViewport(window->GetPositionX(), window->GetPositionY(), window->GetWidth(), window->GetHeight());
 
-    Shader shaderProgram("../../../Source/Shaders/default.vert", "../../../Source/Shaders/default.frag");
+    Shader shaderProgram("../../../Source/Shaders/default.all");
 
     VAO VAO1;
     VAO1.Bind();
@@ -66,10 +66,9 @@ int main(int argc, char* argv[])
         // Tell OpenGL which Shader Program we want to use
         // Bind the VAO so OpenGL knows to use it
         // Draw the triangle using the GL_TRIANGLES primitive
-        shaderProgram.Activate();
+        shaderProgram.Use();
         VAO1.Bind();
         glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
-
         // Render
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -80,7 +79,7 @@ int main(int argc, char* argv[])
     VAO1.Delete();
     VBO1.Delete();
     EBO1.Delete();
-    shaderProgram.Delete();
+    shaderProgram.Unbind();
 
     delete input;
     delete window;

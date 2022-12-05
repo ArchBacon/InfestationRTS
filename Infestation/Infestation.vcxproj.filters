@@ -113,5 +113,6 @@
     <None Include="Source\Shaders\default.vert">
       <Filter>Source\Shaders</Filter>
     </None>
+    <None Include="Source\Shaders\default.all" />
   </ItemGroup>
 </Project>
